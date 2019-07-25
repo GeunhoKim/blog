@@ -7,7 +7,7 @@ pipeline {
                 echo "##################################"
                 echo "# HUGO BUILD STARTS ##############"
                 echo "##################################"
-                sh "cd site && hugo"
+                sh "cd site && /usr/local/bin/hugo"
             }
             /*post {
                 always{
@@ -24,7 +24,7 @@ pipeline {
                 echo "##################################"
                 echo "# BUILD BLOG DOCKER IMAGE ########"
                 echo "##################################"
-                sh "docker build -t blog ."
+                sh "cd site && /usr/local/bin/docker build -t blog ."
             }
         }
 
@@ -33,7 +33,10 @@ pipeline {
                 echo "##################################"
                 echo "# RUN DOCKER IMAGE ###############"
                 echo "##################################"
-                sh "docker run --name blog --rm -d -p ${external_port}:80 blog"
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh "/usr/local/bin/docker rm -f blog"
+                }
+                sh "/usr/local/bin/docker run --name blog -d -p ${external_port}:80 blog"
             }
         }
     }
