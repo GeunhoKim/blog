@@ -1,2 +1,2 @@
-# wiki
-personal wiki pages
+# blog
+blog space
