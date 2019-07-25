@@ -1,4 +1,4 @@
-baseURL = "http://example.org/"
+baseURL = "http://ghmk.iptime.org:8070/"
 languageCode = "en-us"
 title = "Blog · 김근호(Kim, Geunho)"
 author = "김근호(Kim, Geunho)"
