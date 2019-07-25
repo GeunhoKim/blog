@@ -9,14 +9,14 @@ pipeline {
                 echo "##################################"
                 sh "cd site && hugo"
             }
-            post {
+            /*post {
                 always{
                 }
                 success{
                 }
                 failure{
                 }
-            }
+            }*/
         }
 
         stage("Docker Build") {
@@ -37,12 +37,12 @@ pipeline {
             }
         }
     }
-    post{
+    /*post{
         always{
         }
         success{
         }
         failure{
         }
-    }
+    }*/
 }
