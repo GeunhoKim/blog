@@ -36,7 +36,7 @@ pipeline {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     sh "/usr/local/bin/docker rm -f blog"
                 }
-                sh "/usr/local/bin/docker run --name blog -d -p ${external_port}:80 -p ${external_ssl_port}:443 -v ${certificate_path}:/certificate blog"
+                sh "/usr/local/bin/docker run --name blog -d -p ${external_port}:80 -p ${external_ssl_port}:443 -v ${certificate_path}:/letsencrypt blog"
             }
         }
     }
