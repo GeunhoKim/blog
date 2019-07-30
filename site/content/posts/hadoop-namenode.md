@@ -1,6 +1,6 @@
 ---
 author: "Kim, Geunho"
-date: 2019-07-23T20:21:09+09:00
+date: 2019-07-23
 draft: false
 title: "Hadoop NameNode"
 ---
