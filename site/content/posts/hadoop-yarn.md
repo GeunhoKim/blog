@@ -6,4 +6,4 @@ title: "Hadoop YARN"
 ---
 
 
-## Architecture 
+# Architecture 

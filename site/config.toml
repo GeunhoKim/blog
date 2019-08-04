@@ -6,7 +6,7 @@ theme = "black-and-light"
 
 pygmentsstyle = "bw"
 pygmentscodefences = true
-
+enableGitInfo = true
 
 
 [params]
