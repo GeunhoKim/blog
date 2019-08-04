@@ -45,7 +45,7 @@ pipeline {
                 echo "##################################"
                 echo "# WIPEOUT DANGLING DOCKER IMAGES #"
                 echo "##################################"
-                sh "docker rmi $(docker images --quiet --filter \"dangling=true\")"
+                sh "/usr/local/bin/docker rmi \$(/usr/local/bin/docker images --quiet --filter \"dangling=true\")"
             }
         }
     }
