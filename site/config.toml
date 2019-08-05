@@ -7,7 +7,7 @@ theme = "black-and-light"
 pygmentsstyle = "bw"
 pygmentscodefences = true
 enableGitInfo = true
-enableEmoji = true
+FootnoteReturnLinkContents = "[↑]"
 
 [params]
   sitename = "Blog · 김근호(Kim, Geunho)"
