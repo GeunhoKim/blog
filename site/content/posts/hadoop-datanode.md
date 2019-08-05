@@ -1,7 +1,6 @@
 ---
 author: "Kim, Geunho"
 date: 2019-07-29
-lastmod: 2019-08-04
 title: "Hadoop DataNode"
 ---
 

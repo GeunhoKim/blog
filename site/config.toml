@@ -7,7 +7,7 @@ theme = "black-and-light"
 pygmentsstyle = "bw"
 pygmentscodefences = true
 enableGitInfo = true
-
+enableEmoji = true
 
 [params]
   sitename = "Blog · 김근호(Kim, Geunho)"
@@ -22,9 +22,9 @@ enableGitInfo = true
 [[menu.main]]
     name = "Posts"
     url  = "/posts"
-[[menu.main]]
-    name = "Resume"
-    url  = "/resume"
+#[[menu.main]]
+#    name = "Resume"
+#    url  = "/resume"
 [[menu.main]]
     name = "Thoughts"
     url  = "/thoughts"
