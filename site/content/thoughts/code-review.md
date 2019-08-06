@@ -1,0 +1,14 @@
+---
+author: "Kim, Geunho"
+date: 2019-08-06
+draft: true
+title: "Code review에 대한 단상"
+---
+
+# 서론
+개발자는 바쁘다. 이미 고객에게 서비스하고 있는 제품의 끊임 없는 유지보수를 해야하고 가끔은 알 수 없는 이유로 장애가 발생해서 원인을 분석하는데 시간을 쏟는다. 새로운 기능을 요구하는 프로젝트도 쉼 없이 진행한다. 이런 상황속에서 주어진 요구사항에 따라 빠르게 설계를 하고 기존의 망망대해 레거시 코드속에서 한참을 허우적대다가 몇 라인을 겨우 수정하고 새로운 코드를 작성한다.
+
+
+https://twitter.com/iamdevloper/status/397664295875805184
+https://twitter.com/isoiphone/status/824771226585296896
+https://engineering.linecorp.com/ko/blog/effective-codereview/
