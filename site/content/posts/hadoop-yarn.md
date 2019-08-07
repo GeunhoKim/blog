@@ -1,6 +1,7 @@
 ---
 author: "Kim, Geunho"
-date: 2019-08-25
+date: 2019-08-05
+draft: true
 title: "Hadoop YARN"
 ---
 
