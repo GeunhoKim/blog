@@ -21,7 +21,12 @@ NameNode는 DataNode가 전송[^3]하는 블록 리포트를 통해 분산 환�
 
 <br />
 # Read and Write
-클라이언트는 HDFS의 파일을 읽거나 쓸때, NameNode로부터 파일 블록들의 위치를 응답받은 다음, 그 정보를 가지고 DataNode로 직접 읽거나 쓰기 요청을 한다. 
+클라이언트는 HDFS의 파일을 읽거나 쓸때, 먼저 NameNode로부터 파일 블록들의 위치를 응답받은 다음, 그 정보를 가지고 DataNode로 직접 읽거나 쓰기 요청을 한다. NameNode는 파일의 IO에 직접적인 관여를 하지 않고 분산되어 있는 파일 블록들을 병행(parallel)해서 읽어들인다. 만액 어떤 파일의 읽기 요청이 많이 몰린다면, 이 파일 혹은 디렉토리에 대해 복제 계수(replication factor)를 기본 값보다 늘려서 파일 블록을 더 많은 노드에 분산시킬 수 있다. 블록이 여러 노드에 위치하기 때문에 읽기 요청에 대한 부하를 나눌 수 있는 것이다.
+
+![HDFS Read](/hadoop-datanode-3.png) _그림 3. HDFS 파일 읽기 과정. `DistributedFileSystem`가 NameNode로 RPC 통신을 하고, `FSDataInputStream`는 파일을 읽어들인다._
+
+HDFS에 파일을 읽고 쓰는 클라이언트는 일반적으로 하둡의 MapReduce 애플리케이션과 같이 하둡 클러스터의 워커 노드(DataNode)에서 동작하는 프로그램이다.  
+하둡 2 부터는 하둡 클러스터 위에서 동작하는 애플리케이션을 [YARN](/posts/hadoop-yarn/)이 관리하는데, 이때 처리하려는 파일 블록의 위치에 따라 그 블록이 위치한 노드에서 애플리케이션이 실행될 수 있도록 자원을 할당한다.
 
 
 
