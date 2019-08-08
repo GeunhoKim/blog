@@ -1,0 +1,4 @@
+Sitemap: https://blog.geunho.dev/sitemap.xml
+
+User-agent: *
+Allow: /
