@@ -4,8 +4,10 @@ title = "Blog · 김근호(Kim, Geunho)"
 author = "김근호(Kim, Geunho)"
 theme = "black-and-light"
 
-pygmentsstyle = "bw"
-pygmentscodefences = true
+pygmentsStyle = "bw"
+pygmentsUseClasses = true
+pygmentsCodeFences = true
+pygmentsCodeFencesGuessSyntax = true
 enableGitInfo = true
 FootnoteReturnLinkContents = "[↑]"
 
