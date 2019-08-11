@@ -1,7 +1,6 @@
 ---
 author: "Kim, Geunho"
 date: 2016-04-15
-draft: true
 math: true
 title: "Linux 파일 시스템 접근 권한"
 ---
