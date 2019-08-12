@@ -20,6 +20,11 @@ pipeline {
         }
 
         stage("Docker Build") {
+            when {
+                not {
+                    changelog '.*^\\[SKIP DEPLOY\\] .+$'
+                }
+            }
             steps {
                 echo "##################################"
                 echo "# BUILD BLOG DOCKER IMAGE ########"
@@ -29,6 +34,11 @@ pipeline {
         }
 
         stage("Docker Run") {
+            when {
+                not {
+                    changelog '.*^\\[SKIP DEPLOY\\] .+$'
+                }
+            }
             steps {
                 echo "##################################"
                 echo "# RUN DOCKER IMAGE ###############"
