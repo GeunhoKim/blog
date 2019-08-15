@@ -55,7 +55,9 @@ pipeline {
                 echo "##################################"
                 echo "# WIPEOUT DANGLING DOCKER IMAGES #"
                 echo "##################################"
-                sh "/usr/local/bin/docker rmi \$(/usr/local/bin/docker images --quiet --filter \"dangling=true\")"
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh "/usr/local/bin/docker rmi \$(/usr/local/bin/docker images --quiet --filter \"dangling=true\")"
+                }
             }
         }
     }

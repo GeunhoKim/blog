@@ -34,7 +34,18 @@ Hadoop 2가 되면서 JobTracker와 TaskTracker는 더 이상 사용되지 않�
 
 ![YARN Architecture](/hadoop-yarn-2.png) _그림 2. YARN의 구조_
 
+그림 2를 살펴보면, JobTracker의 역할을 ResourceManager가 YARN의 마스터 노드로서 가져갔고, NodeManager는 TaskTracker의 역할을 가져가면서 각 워커 노드에서 동작하는 구조를 갖게 되었다.  
+마스터와 워커 노드 모두 기능에 따라 여러 프로세스로 나뉘어졌는데, ResourceManager는 클러스터 전체 리소스 내에서 다양한 종류의 애플리케이션이 동작할 수 있도록 총괄하는 역할을 담당하며, 각 스케쥴링과 애플리케이션 실행은 마스터 노드 내에서 함께 동작하는 Scheduler와 ApplicationsManager가 맡는다.  
 
+NodeManager은 마치 DataNode가 NameNode에게 heartbeat을 주기적으로 보내고 블록 리포트를 보내는것 처럼, 각 노드의 리소스를 관제하면서 ResourceManager에게 주기적으로 heartbeat와 리소스 관제 내용을 ResourceManage에게 보낸다.  
+
+YARN은 이렇듯 리소스 관리와 애플리케이션 스케쥴링과 모니터링 기능을 서로 다른 컴포넌트에서 동작하도록 역할을 분리했다. 각 측면에 대해서 더 상세히 살펴보도록 한다.  
+
+# Resource management
+
+# Application scheduling and monitoring
+
+# HA
 
 [^1]: 단일 지점 실패, Single point of failure
 [^2]: 뿐만 아니라 HDFS 클러스터도 필요한 만큼 여러 개를 구성하거나, 새로운 버전을 띄워 검증하는 용도로도 쓰였다.
