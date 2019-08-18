@@ -43,9 +43,15 @@ YARN은 이렇듯 리소스 관리와 애플리케이션 스케쥴링과 모니�
 
 # Resource management
 
+
 # Application scheduling and monitoring
 
-# HA
+
+# High Availability
+하둡 1에서는 단일 마스터 노드인 JobTracker가 다운되면 전체 job이 실패하고 더이상 job을 실행할 수 없었다. 하둡 2의 ResourceManager도 단일 마스터 노드로서 YARN의 SPOF였는데, 2.4 버전 이후부터는 Active/Standby 노드 구성을 하면서 고가용성 특성을 얻게 되었다.  
+ResourceManager의 Active/Standby 상태는 Zookeeper 클러스터의 리더 선출 기능을 통해 결정된다. Active 노드는 현재 상태를 Zookeeper에 주기적으로 알리는데, Active 노드가 다운된다면 상태 갱신도 이루어지지 않기 때문에 Zookeeper는 Standby 상태였던 노드를 새로은 리더로 선출한다. 이때 Standby 노드는 Active 노드가 되며, Active는 Standby 상태가 되는 것이다.  
+
+![YARN HA](/hadoop-yarn-3.png) _그림 3. Active/Standby ResourceManager_
 
 [^1]: 단일 지점 실패, Single point of failure
 [^2]: 뿐만 아니라 HDFS 클러스터도 필요한 만큼 여러 개를 구성하거나, 새로운 버전을 띄워 검증하는 용도로도 쓰였다.
