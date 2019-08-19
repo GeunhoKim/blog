@@ -14,7 +14,7 @@ root 권한이 없는 계정으로 Linux 내에서 애플리케이션을 수행�
 
 이 중 세 번째 방법은 애플리케이션에 cap_net_bind_service capability를 설정하면 된다.
 
-```
+```bash
 # root 계정으로 로그인
 su –
 
