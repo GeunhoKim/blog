@@ -10,6 +10,7 @@ pygmentsCodeFences = true
 pygmentsCodeFencesGuessSyntax = true
 enableGitInfo = true
 FootnoteReturnLinkContents = "[↑]"
+googleAnalytics = "UA-146312497-1"
 
 [params]
   sitename = "Blog · 김근호(Kim, Geunho)"
