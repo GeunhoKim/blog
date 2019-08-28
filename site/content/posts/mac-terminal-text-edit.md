@@ -7,7 +7,7 @@ title: "Mac Terminal에서 텍스트 편집기 바로 열기"
 Mac의 Terminal에서 이런 저런 작업을 하다가 파일을 수정할때 `vim`과 같은 텍스트 편집기를 사용한다.  
 가끔은 자주 사용하는 GUI 텍스트 편집기로 파일을 수정하고 싶을 때 곧바로 Terminal에서 어떻게 명령어를 입력해야 할까? 답은 `open` 명령어에 있다. 
 
-```bash
+```
 man open
 
 OPEN(1)                   BSD General Commands Manual                  OPEN(1)
@@ -43,3 +43,27 @@ DESCRIPTION
 ```
 open -a "application name" /path/to/file
 ```
+
+`application name`에는 실행할 편집기 이름을 넣어준다. `/Applications`에 설치되어 있는 이름 그대로 넣으면 된다.  
+예를 들어 [Visual Studio Code](https://code.visualstudio.com)로 폴더를 열고 싶다면,
+```
+open -a "Visual Studio Code" ~/Downloads
+```
+
+처럼 입력하면 곧바로 애플리케이션을 실행하면서 해당 폴더를 연다. 이 명령어를 다시 `alias`로 등록하거나, 애플리케이션의 바이너리 파일을 `PATH` 환경 변수에 직접 등록해서 사용하면 쉽게 명령어를 입력할 수 있다.(후자의 경우 `open` 명령어를 사용하지 않아도 된다)  
+나의 경우 명령어 이름을 입맛에 맞게 지정할 수 있는 `alias` 방법을 선호한다. 
+```bash
+# profile 편집
+vim ~/.profile
+
+# 아래 라인 추가하고 저장
+alias vs='open -a "Visual Studio Code"'
+
+# profile 다시 로드
+source ~/.profile
+
+# 실행
+vs ~/Downloads
+```
+
+짧은 명령어로 GUI 편집기를 실행하는 모습을 볼 수 있다.
