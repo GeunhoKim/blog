@@ -1,7 +1,6 @@
 ---
 author: "Kim, Geunho"
 date: 2019-08-28
-draft: true
 title: "Docker로 Hadoop 테스트 환경 구축하기 - HDFS"
 ---
 
