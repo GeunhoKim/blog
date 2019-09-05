@@ -330,7 +330,21 @@ docker compose로 기동한 후 마지막 명령어로 로그를 살펴보면, �
 
 ![NameNode Web UI](/hadoop-docker-test-env-hdfs-3.png)
 
-또한 NameNode가 기동되었으니, 아직 DataNode를 띄우지 않더라도 폴더 생성, 조회와 삭제가 가능하다.  
+또한 NameNode가 기동되었으니, 아직 DataNode를 띄우지 않더라도 폴더의 생성과 삭제, 그리고 파일 목록 조회가 가능하다.  
+NameNode 컨테이너 내부에 있는 Hadoop 클라이언트를 실행해서 테스트해보자.  
+```bash
+# namenode 이름의 컨테이너의 hadoop 클라이언트를 실행. 파일 시스템의 root 디렉토리를 모두 조회한다.
+docker exec -it namenode /opt/hadoop/bin/hadoop fs -ls -R /
+
+# 명령어 등록
+alias hadoop="docker exec -it namenode /opt/hadoop/bin/hadoop"
+
+# 폴더 생성/조회/삭제
+hadoop fs -mkdir -p /tmp/test/app
+hadoop fs -ls -R /tmp
+hadoop fs -rm -r /tmp/test/app
+```
+
 
 ---
 이어지는 포스팅에서는 DataNode 이미지를 생성하고 세 개의 DataNode 컨테이너를 기동하고, 마지막으로 Proxy 구성을 통해 로컬 환경에서 reverse proxy로 서로 다른 DataNode 컨테이너의 Web UI에 접근하는 방법을 설명할 예정이다.  
