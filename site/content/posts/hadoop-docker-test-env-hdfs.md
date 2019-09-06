@@ -259,7 +259,7 @@ NameNode 이미지를 생성했으니 이제 실제로 기동시켜볼 차례이
 └── hadoop
     ├── base
     ├── namenode
-    └── datanode
+    ├── datanode
     └── docker-compose.yml
 ```
 
@@ -307,7 +307,8 @@ Creating namenode        ... done
 
 # 기동중인 컨테이너 프로세스 확인
 docker ps
-CONTAINER ID        IMAGE                          COMMAND                  CREATED             STATUS                            PORTS               622e4f642435        hadoop-namenode:2.9.2          "/start.sh /opt/hado…"   10 seconds ago      Up 6 seconds (health: starting)   0.0.0.0.:9000->9000/tcp, 0.0.0.0.:50070->50070/tcp 
+CONTAINER ID        IMAGE                          COMMAND                  CREATED             STATUS                            PORTS               622e4f642435
+hadoop-namenode:2.9.2          "/start.sh /opt/hado…"   10 seconds ago      Up 6 seconds (health: starting)   0.0.0.0.:9000->9000/tcp, 0.0.0.0.:50070->50070/tcp 
 
 # 생성된 bridge 네트워크 확인
 docker network ls
