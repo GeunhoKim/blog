@@ -411,7 +411,13 @@ docker build -t hadoop-datanode:2.9.2 .
 
 이제 컨테이너 실행 환경 정보를 담고 있는 `docker-compose.yml` 파일에 DataNode를 추가한다. 로컬 환경이지만 세 개의 DataNode를 띄울 것이다.  
 ```yml
-version: "3"
+version: "3.4"
+
+# 이미지와 네트워크 정보에 대한 base service를 지정
+x-datanode_base: &datanode_base
+  image: hadoop-datanode:2.9.2
+  networks:
+    - bridge
 
 services:
   namenode:
@@ -419,17 +425,11 @@ services:
     container_name: namenode
     hostname: namenode
     ports:
-      - "50070:50070"
-      - "9000:9000"
+      - 50070:50070
+      - 9000:9000
     volumes:
       - namenode:/opt/hadoop/dfs/name
       - /tmp:/tmp
-    networks:
-      - bridge
-  
-  # 이미지와 네트워크 정보에 대한 base service를 지정
-  x-datanode_base: &datanode_base
-    image: hadoop-datanode:2.9.2
     networks:
       - bridge
 
@@ -464,7 +464,9 @@ networks:
   bridge:
 ```
 
-파일을 수정하고 `docker-compose up -d`를 다시 실행하면 세 개의 DataNode 컨테이너를 추가로 띄우게 된다.
+파일을 수정하고 `docker-compose up -d`를 다시 실행하면 세 개의 DataNode 컨테이너를 추가로 띄우게 된다. DataNode는 NameNode로 heartbeat을 보내면서 NameNode에 등록된다.
+
+NameNode
 
 ## Proxy
 
