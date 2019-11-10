@@ -1,6 +1,7 @@
 ---
 author: "Kim, Geunho"
 date: 2019-07-31
+draft: true
 title: "Metatron, GitHub star 사건과 관련하여"
 ---
 
