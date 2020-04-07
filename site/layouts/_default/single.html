@@ -1,0 +1,47 @@
+{{ partial "header.html" . }}
+
+{{ if or .Params.math .Site.Params.math }}
+{{ partial "math.html" . }}
+{{ end }}
+
+<section id="content">
+  <h1>{{ if .Params.heading }} {{ .Params.heading }} {{ else }} {{ .Title }} {{ end }}</h1>
+
+  {{ if .Params.date }}
+    <div id="sub-header">
+      {{ .Date.Format (.Site.Params.dateform | default "2 January 2006") }} · {{ .ReadingTime }} minute{{ if (gt .ReadingTime 1) }}s{{ end }} read
+    </div>
+  {{ end }}
+
+  {{ .TableOfContents }}
+
+  <div class="entry-content">
+    {{ .Content }}
+  </div>
+
+  {{ if .Params.lastmod }}
+    <div id="sub-header">
+      Updated {{ .Lastmod.Format (.Site.Params.dateform | default "2 January 2006") }}
+    </div>
+  {{ end }}
+
+  <div id="links">
+    {{ if .PrevInSection }}
+      <a class="basic-alignment left" href="{{.PrevInSection.Permalink}}">&laquo; {{.PrevInSection.Title}}</a>
+    {{ end }}
+    {{ if .NextInSection }}
+      <a class="basic-alignment left" href="{{.NextInSection.Permalink}}">{{.NextInSection.Title}} &raquo;</a>
+    {{ end }}
+  </div>
+</section>
+<section id="comment">
+  <script src="https://utteranc.es/client.js"
+    repo="geunho/blog"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"
+    async>
+  </script>  
+</section>
+
+{{ partial "footer.html" . }}

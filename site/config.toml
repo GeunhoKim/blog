@@ -2,7 +2,7 @@ baseURL = "https://blog.geunho.dev"
 languageCode = "en-us"
 title = "Blog · 김근호(Kim, Geunho)"
 author = "김근호(Kim, Geunho)"
-theme = "black-and-light"
+#theme = "black-and-light"
 
 pygmentsStyle = "bw"
 pygmentsUseClasses = true
