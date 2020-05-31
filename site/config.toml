@@ -31,3 +31,6 @@ googleAnalytics = "UA-146312497-1"
 [[menu.main]]
     name = "Thoughts"
     url  = "/thoughts"
+[[menu.main]]
+    name = "TIL"
+    url  = "/til"

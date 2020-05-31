@@ -1,0 +1,3 @@
+[submodule "site/content/til"]
+	path = site/content/til
+	url = https://github.com/geunho/TIL.git
