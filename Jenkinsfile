@@ -19,7 +19,7 @@ pipeline {
             }*/
         }
 
-        stage("Docker Build") {
+        stage("Clone github.io") {
             when {
                 not {
                     changelog '.*^\\[SKIP DEPLOY\\] .+$'
@@ -27,13 +27,13 @@ pipeline {
             }
             steps {
                 echo "##################################"
-                echo "# BUILD BLOG DOCKER IMAGE ########"
+                echo "# CLONE GITHUB.IO ################"
                 echo "##################################"
-                sh "cd site && /usr/local/bin/docker build -t blog ."
+                sh "git clone https://github.com/geunho/geunho.github.io.git"
             }
         }
 
-        stage("Docker Run") {
+        stage("Copy site published") {
             when {
                 not {
                     changelog '.*^\\[SKIP DEPLOY\\] .+$'
@@ -41,23 +41,25 @@ pipeline {
             }
             steps {
                 echo "##################################"
-                echo "# RUN DOCKER IMAGE ###############"
+                echo "# COPY SITE PUBLISHED ############"
                 echo "##################################"
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh "/usr/local/bin/docker rm -f blog"
-                }
-                sh "/usr/local/bin/docker run --name blog --restart always -d -p ${external_port}:80 -p ${external_ssl_port}:443 -v ${certificate_path}:/letsencrypt blog"
+                sh "cp -r site/public/* geunho.github.io/"
             }
         }
 
-        stage("Docker Clean") {
+        stage("Publish to github.io") {
+            when {
+                not {
+                    changelog '.*^\\[SKIP DEPLOY\\] .+$'
+                }
+            }
             steps {
                 echo "##################################"
-                echo "# WIPEOUT DANGLING DOCKER IMAGES #"
+                echo "# PUBLISH TO GITHUB.IO ###########"
                 echo "##################################"
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh "/usr/local/bin/docker rmi \$(/usr/local/bin/docker images --quiet --filter \"dangling=true\")"
-                }
+                sh "cd geunho.github.io && git add ."
+                sh "COMMIT_URL=\$(sed 's/.\\{4\\}\$//' <<< \"${GIT_URL}/commit/${GIT_COMMIT}\") && git commit -m \"[${BUILD_NUMBER}] ${BUILD_URL}\n(${COMMIT_URL})\""
+                sh "git push"
             }
         }
     }
