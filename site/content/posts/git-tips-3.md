@@ -7,7 +7,7 @@ title: "Git Tips - Sparse checkout 하기"
 프로젝트 규모가 큰 repository나 mono repository로 구성한 repository는 개발 도구에서 프로젝트를 불러오면 빌드 시간이 오래걸릴 뿐만 아니라 개발 장비의 리소스도 많이 차지하게 된다.
 git의 [core.sparseCheckout](https://git-scm.com/docs/git-read-tree#_sparse_checkout) 옵션을 활성화 하거나, [sparse-checkout](https://git-scm.com/docs/git-sparse-checkout) 명령어를 사용하면 이런 경우를 해결할 수 있다.
 
-### core.sparseCheckout 옵션
+# core.sparseCheckout 옵션
 먼저 옵션을 활성화한다.
 ```
 git config core.sparseCheckout true
@@ -25,7 +25,7 @@ touch .git/info/sparse-checkout
 !README.md
 ```
 
-### sparse-checkout 명령어
+# sparse-checkout 명령어
 위의 일련의 작업을 명령어를 통해 설정할 수 있도록 제공되는 도구이다. 
 동일한 작업을 다음과 같이 진행할 수 있다.
 ```bash

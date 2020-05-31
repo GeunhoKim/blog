@@ -64,7 +64,7 @@ pipeline {
                 echo "##################################"               
                 dir('geunho.github.io') {
                     sh "git add ."
-                    sh "COMMIT_URL=\$(sed 's/.\\{4\\}\$//' <<< \"${GIT_URL}/commit/${GIT_COMMIT}\") && git commit -m \"[PUBLISH#${BUILD_NUMBER}] ${BUILD_URL}\n(\$COMMIT_URL)\""
+                    sh "COMMIT_URL=\$(sed 's/.\\{4\\}\$//' <<< \"${GIT_URL}\") && git commit -m \"[PUBLISH#${BUILD_NUMBER}] ${BUILD_URL}\n(\$COMMIT_URL/commit/${GIT_COMMIT})\""
                     sh "git push https://${GITHUB_CRED}@github.com/geunho/geunho.github.io.git"
                 }
             }
