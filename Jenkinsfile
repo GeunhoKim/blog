@@ -7,6 +7,7 @@ pipeline {
                 echo "##################################"
                 echo "# HUGO BUILD STARTS ##############"
                 echo "##################################"
+                sh "rm site/content/til/README.md"
                 sh "cd site && /usr/local/bin/hugo"
             }
             /*post {
@@ -29,6 +30,7 @@ pipeline {
                 echo "##################################"
                 echo "# CLONE GITHUB.IO ################"
                 echo "##################################"
+                sh "rm -rf geunho.github.io"
                 sh "git clone https://github.com/geunho/geunho.github.io.git"
             }
         }
@@ -53,13 +55,29 @@ pipeline {
                     changelog '.*^\\[SKIP DEPLOY\\] .+$'
                 }
             }
+            environment {
+                GITHUB_CRED = credentials('GITHUB_CRED')
+            }
             steps {
                 echo "##################################"
                 echo "# PUBLISH TO GITHUB.IO ###########"
-                echo "##################################"
-                sh "cd geunho.github.io && git add ."
-                sh "COMMIT_URL=\$(sed 's/.\\{4\\}\$//' <<< \"${GIT_URL}/commit/${GIT_COMMIT}\") && git commit -m \"[${BUILD_NUMBER}] ${BUILD_URL}\n(${COMMIT_URL})\""
-                sh "git push"
+                echo "##################################"               
+                dir('geunho.github.io') {
+                    sh "git add ."
+                    sh "COMMIT_URL=\$(sed 's/.\\{4\\}\$//' <<< \"${GIT_URL}/commit/${GIT_COMMIT}\") && git commit -m \"[PUBLISH#${BUILD_NUMBER}] ${BUILD_URL}\n(\$COMMIT_URL)\""
+                    sh "git push https://${GITHUB_CRED}@github.com/geunho/geunho.github.io.git"
+                }
+            }
+        }
+    }
+    post {
+        cleanup {
+            deleteDir()
+            dir("${workspace}@tmp") {
+                deleteDir()
+            }
+            dir("${workspace}@script") {
+                deleteDir()
             }
         }
     }
